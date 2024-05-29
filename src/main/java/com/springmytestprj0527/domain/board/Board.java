@@ -4,8 +4,6 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-import static java.lang.Integer.parseInt;
-
 @Data
 public class Board {
     private Integer id;
@@ -17,4 +15,6 @@ public class Board {
 
     private String how;
     private String[] categories;
+    private String stringCategories;
+
 }

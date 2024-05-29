@@ -1,6 +1,7 @@
 package com.springmytestprj0527.mapper.board;
 
 import com.springmytestprj0527.domain.board.Board;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,8 +24,17 @@ public interface BoardMapper {
     int addRow(Board board, String categoriesToString);
 
     @Select("""
-            SELECT *
-            FROM board
-            """)
+                    SELECT
+            id,date, income, expense, categories AS stringCategories, how
+                        
+                    FROM board
+                    """)
     List<Board> findAllBoardList();
+
+    @Delete("""
+            DELETE FROM board
+            WHERE id=#{id}
+            """)
+    int deleteRowById(Integer id);
+
 }

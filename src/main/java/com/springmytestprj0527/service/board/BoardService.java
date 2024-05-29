@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -17,7 +16,7 @@ public class BoardService {
 
     public void addRow(Board board) {
         String[] categories = board.getCategories();
-        String categoriesToString = String.join(",",categories);
+        String categoriesToString = String.join(",", categories);
 
         int addedRow = mapper.addRow(board, categoriesToString);
         System.out.println("BoardService.addRow");
@@ -30,5 +29,10 @@ public class BoardService {
         List<Board> allBoardList = mapper.findAllBoardList();
         System.out.println("allBoardList = " + allBoardList);
         return allBoardList;
+    }
+
+    public void deleteRow(Integer rowId) {
+        int i = mapper.deleteRowById(rowId);
+        System.out.println("삭제 성공 = " + i);
     }
 }

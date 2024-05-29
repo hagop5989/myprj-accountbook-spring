@@ -16,15 +16,24 @@ public class BoardController {
 
     @PostMapping("addRow")
     public void addRow(@RequestBody Board board) {
-        System.out.println("BoardController-board = " + board);
+//        System.out.println("BoardController-board = " + board);
         service.addRow(board);
     }
 
     @GetMapping("list")
-    public Map<String,Object> boardList() {
-        System.out.println("list working");
+    public Map<String, Object> boardList() {
         List<Board> boards = service.boardList();
-        System.out.println("boards = " + boards);
-        return Map.of("boardList",boards);
+//        System.out.println("boards = " + boards);
+        return Map.of("boardList", boards);
+    }
+
+    @PutMapping("updateRow")
+    public void updateRow(@RequestBody Board board) {
+//        System.out.println("BoardController-board = " + board);
+    }
+
+    @DeleteMapping("deleteRow")
+    public void deleteRow(@RequestParam Integer rowId) {
+        service.deleteRow(rowId);
     }
 }
