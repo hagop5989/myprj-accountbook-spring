@@ -23,13 +23,13 @@ public class BoardController {
     @GetMapping("list")
     public Map<String, Object> boardList() {
         List<Board> boards = service.boardList();
-//        System.out.println("boards = " + boards);
+        System.out.println("boardList = " + boards);
         return Map.of("boardList", boards);
     }
 
     @PutMapping("updateRow")
     public void updateRow(@RequestBody Board board) {
-//        System.out.println("BoardController-board = " + board);
+        service.updateRow(board);
     }
 
     @DeleteMapping("deleteRow")

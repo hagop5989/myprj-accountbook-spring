@@ -21,3 +21,4 @@ ALTER TABLE board
 
 SELECT *
 FROM board;
+

@@ -1,10 +1,7 @@
 package com.springmytestprj0527.mapper.board;
 
 import com.springmytestprj0527.domain.board.Board;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -37,4 +34,15 @@ public interface BoardMapper {
             """)
     int deleteRowById(Integer id);
 
+    @Update("""
+            UPDATE board
+            SET
+                date=#{board.date},
+                income=#{board.income},
+                expense=#{board.expense},
+                how=#{board.how},
+                categories = #{categoriesToString}
+                WHERE id=#{board.id}
+            """)
+    int updateRow(Board board, String categoriesToString);
 }

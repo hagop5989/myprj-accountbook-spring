@@ -19,20 +19,27 @@ public class BoardService {
         String categoriesToString = String.join(",", categories);
 
         int addedRow = mapper.addRow(board, categoriesToString);
-        System.out.println("BoardService.addRow");
-        System.out.println("board = " + board);
-        System.out.println("categoriesToString = " + categoriesToString);
-        System.out.println("addedRow = " + addedRow);
     }
 
     public List<Board> boardList() {
         List<Board> allBoardList = mapper.findAllBoardList();
-        System.out.println("allBoardList = " + allBoardList);
+        for (Board board : allBoardList) {
+            String[] categories = board.getStringCategories().split(",");
+            board.setCategories(categories);
+        }
+
         return allBoardList;
     }
 
     public void deleteRow(Integer rowId) {
         int i = mapper.deleteRowById(rowId);
-        System.out.println("삭제 성공 = " + i);
+
+    }
+
+    public void updateRow(Board board) {
+        String[] categories = board.getCategories();
+        String categoriesToString = String.join(",", categories);
+
+        mapper.updateRow(board, categoriesToString);
     }
 }
