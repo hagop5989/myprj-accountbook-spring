@@ -22,3 +22,12 @@ ALTER TABLE board
 SELECT *
 FROM board;
 
+ALTER TABLE board
+    ADD COLUMN rowSum INT(100) NOT NULL;
+
+CREATE TABLE member
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    nick_name VARCHAR(30) NOT NULL UNIQUE,
+    password  VARCHAR(30) NOT NULL
+)
