@@ -54,6 +54,34 @@ SELECT *
 FROM member;
 
 INSERT INTO authority (member_id, authority_name)
-VALUES (6, 'admin')
+VALUES (6, 'admin');
 
-ALTER TABLE member MODIFY COLUMN password VARCHAR(100) NOT NULL ;
+ALTER TABLE member
+    MODIFY COLUMN password VARCHAR(100) NOT NULL;
+
+DROP TABLE modal;
+CREATE TABLE modal
+(
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    nick_name VARCHAR(30)  NOT NULL REFERENCES member (nick_name),
+    text      VARCHAR(200) NOT NULL,
+    board_id  INT          NOT NULL REFERENCES board (id)
+);
+SELECT *
+FROM modal;
+
+ALTER TABLE modal
+    MODIFY COLUMN like_state BOOLEAN NOT NULL;
+
+
+DROP TABLE modal_like;
+CREATE TABLE modal_like
+(
+    board_id   INT REFERENCES board (id),
+    id         INT REFERENCES modal (id),
+    member_id  INT REFERENCES member (id),
+    like_state BOOLEAN NOT NULL,
+    like_num   INT,
+    PRIMARY KEY (board_id, id, member_id)
+);
+

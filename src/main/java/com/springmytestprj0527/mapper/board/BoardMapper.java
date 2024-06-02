@@ -25,6 +25,7 @@ public interface BoardMapper {
             SELECT
             id,date, income, expense, categories AS stringCategories, how , rowSum
             FROM board
+            ORDER BY id DESC
             """)
     List<Board> findAllBoardList();
 
