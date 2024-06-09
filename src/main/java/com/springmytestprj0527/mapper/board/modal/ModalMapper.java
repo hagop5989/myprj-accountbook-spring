@@ -12,13 +12,15 @@ public interface ModalMapper {
     @Select("""
             SELECT *
             FROM modal
+            WHERE board_id = #{boardId}
             """)
-    List<Modal> findAllModalList();
+    List<Modal> findAllModalList(String boardId);
 
     @Insert("""
             INSERT INTO modal (nick_name, board_id, text,like_state)
             VALUES (#{nickName},#{boardId},#{text},#{likeState});
             """)
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Modal modal);
 
     @Delete("""
@@ -35,10 +37,31 @@ public interface ModalMapper {
     Modal selectByModalId(Integer id);
 
     @Update("""
-            UPDATE modal SET 
+            UPDATE modal
+            SET
             text = #{text},
             like_state = #{likeState}
             WHERE id = #{id}
             """)
     int update(Modal modal);
+
+    @Insert("""
+            INSERT INTO modal_file (modal_id, name)
+            VALUES (#{modalId},#{name})
+            """)
+    int insertFileName(Integer modalId, String name);
+
+
+    @Select("""
+            SELECT name FROM modal_file
+            WHERE modal_id = #{modalId}
+            """)
+    List<String> selectFileNameByModalId(Integer modalId);
+
+    @Delete("""
+            DELETE FROM modal_file
+            WHERE modal_id = #{modalId}
+            """)
+    int deleteFileNameById(Integer modalId);
+
 }

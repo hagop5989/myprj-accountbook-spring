@@ -16,6 +16,11 @@ public class MemberController {
 
     private final MemberService service;
 
+    @PostMapping("test")
+    public void signup() {
+        System.out.println("working!");
+    }
+
     @PostMapping("signup")
     public ResponseEntity signup(@RequestBody Member member) {
         if (service.validate(member)) {

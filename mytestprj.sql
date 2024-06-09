@@ -85,3 +85,13 @@ CREATE TABLE modal_like
     PRIMARY KEY (board_id, id, member_id)
 );
 
+
+CREATE TABLE modal_file
+(
+    modal_id INT          NOT NULL REFERENCES modal (id),
+    name     VARCHAR(500) NOT NULL,
+    PRIMARY KEY (modal_id, name)
+);
+
+SELECT *
+FROM modal_file;
