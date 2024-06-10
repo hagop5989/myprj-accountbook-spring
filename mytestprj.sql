@@ -25,8 +25,8 @@ FROM board;
 ALTER TABLE board
     ADD COLUMN rowSum INT(100) NOT NULL;
 
-drop table member;
 
+DROP TABLE member;
 CREATE TABLE member
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,6 +53,7 @@ FROM authority;
 SELECT *
 FROM member;
 
+
 INSERT INTO authority (member_id, authority_name)
 VALUES (6, 'admin');
 
@@ -71,7 +72,7 @@ SELECT *
 FROM modal;
 
 ALTER TABLE modal
-    MODIFY COLUMN like_state BOOLEAN NOT NULL;
+    ADD COLUMN like_state BOOLEAN NOT NULL;
 
 
 DROP TABLE modal_like;
