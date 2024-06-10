@@ -30,7 +30,7 @@ public class MemberService {
         member.setPassword(passwordEncoder.encode(member.getPassword())); // pw 인코딩
         member.setEmail(member.getEmail().trim());
         member.setNickName(member.getNickName().trim());
-        
+
         mapper.insert(member);
     }
 
